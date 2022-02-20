@@ -1,0 +1,1214 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            body{
+                background-color: rgb(10, 10, 29);
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                margin: 0px;
+                width: 100%;
+                height: 100%;
+                color: rgb(0, 170, 255);
+                font-family: 'Source Sans Pro', sans-serif;
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                overflow: hidden;
+            }
+            #MainWindow{
+                filter: blur(10px);
+                transition: filter .5s ease-in-out;
+            }
+            #ScrollBar{
+                background-color: rgb(0, 69, 104);
+                width: 10px;
+                height: calc(100% - 150px);
+                position: absolute;
+                left: calc(100% - 10px);
+                border-radius: 25px;
+            }
+            #ScrollBar #CurrentPos{
+                background-color: rgb(0, 170, 255);
+                width: 100%;
+                height: 20px;
+                border-radius: 25px;
+                position: absolute;
+            }
+            #ScrollBar #CurrentPos #Cover{
+                background-color: rgb(0, 170, 255);
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0px;
+                border-radius: 25px;
+            }
+            #ScrollBar #CurrentPos #Hint{
+                background-color: rgb(0, 170, 255);
+                color: rgb(10, 10, 29);
+                padding: 5px;
+                border-radius: 25px;
+                position: relative;
+                width: 140px;
+                left: -0px;
+                transition: left .25s ease-in-out;
+            }
+
+            #Status{
+                font-size: 30px;
+                margin: 5px;
+                text-align: center;
+                width: 100%;
+                font-weight: bold;
+                position: absolute;
+            }
+
+            .Country{ 
+                display: none;
+            }
+            #Graph{
+                position: absolute;
+                width: 100%;
+                height: 150px;
+                bottom: 0px;
+                background-color: rgb(10, 10, 29);
+            }
+
+            #Visuals{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0%);
+                background-color: rgb(10, 10, 29);
+            }
+            #Intro{
+                width: 80%;
+                height: 70%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgb(0, 170, 255);
+                color: rgb(10, 10, 29);
+                padding: 10px;
+                border-radius: 25px;
+                font-size: large;
+                transition: top .5s ease-in-out;
+                overflow-y: auto;
+            }
+            #Intro #Start{
+                padding: 10px;
+                background-color: rgb(10, 10, 29);
+                color: rgb(0, 170, 255);
+                margin-left: 20%;
+                margin-right: 20%;
+                margin-top: 10px;
+                border-radius: 25px;
+                text-align: center;
+                cursor: pointer;
+
+                transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            }
+            #Intro #Start:hover{
+                background-color: rgb(0, 255, 255);
+                color: rgb(10, 10, 29);
+            }
+            #Intro h1{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="MainWindow">
+            <img class="Country" id="Canada" src="/Canada.png">
+            <img class="Country" id="Australia" src="/Australia.png">
+            <img class="Country" id="Alberta" src="/Alberta.png">
+            <img class="Country" id="India" src="/India.png">
+            <img class="Country" id="UnitedKingdom" src="/United Kingdom.png">
+    
+    
+            <canvas id="Graph">
+            </canvas>
+            
+            <canvas id="Visuals">
+            </canvas>
+    
+            
+            <div id="Status">
+                On January 1st 2021...
+            </div>
+    
+        
+            <div id="ScrollBar">
+                <div id="CurrentPos">
+                    <div id="Hint">
+                        December 5th 2021
+                    </div>
+                    <div id="Cover">
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Intro">
+            <h1>
+                -[=[Final COVID-19 Infographic]=]-
+            </h1>
+            <div id="Start">
+                Start Infographic
+            </div>
+            <h2>
+                Made by the members of Group 7
+            </h2>
+            <h3>
+                Group 7 Members:
+            </h3>
+            <ul>
+                <li>
+                    Joshua O
+                </li>
+                <!--
+                    All my other group members are hidden to protect their privacy. Please respect that. Use the final report to get their names.
+                -->
+            </ul>
+            For more infomation about our work. Check out the submitted Final Report!
+            <br><br>
+            As always, heve fun!
+            <h3>
+                Data References:
+            </h3>
+            <ul id="References">
+                <li><a href="https://ourworldindata.org/explorers/coronavirus-data-explorer">https://ourworldindata.org/explorers/coronavirus-data-explorer</a></li>
+                <li><a href="https://ourworldindata.org/coronavirus/country/australia?country=AUS~CAN~IND~GBR">https://ourworldindata.org/coronavirus/country/australia?country=AUS~CAN~IND~GBR</a></li>
+                <li><a href="https://health-infobase.canada.ca/covid-19/epidemiological-summary-covid-19-cases.html">https://health-infobase.canada.ca/covid-19/epidemiological-summary-covid-19-cases.html</a></li>
+                <li><a href="https://www.health.gov.au/health-alerts/covid-19/case-numbers-and-statistics ">https://www.health.gov.au/health-alerts/covid-19/case-numbers-and-statistics </a></li>
+                <li><a href="https://ourworldindata.org/coronavirus/country/australia ">https://ourworldindata.org/coronavirus/country/australia </a></li>
+                <li><a href="https://www.health.gov.au/health-alerts/covid-19/restrictions-and-lockdowns ">https://www.health.gov.au/health-alerts/covid-19/restrictions-and-lockdowns </a></li>
+                <li><a href="https://catalogofbias.org/biases/recall-bias/ ">https://catalogofbias.org/biases/recall-bias/ </a></li>
+                <li><a href="https://catalogofbias.org/biases/selection-bias/ ">https://catalogofbias.org/biases/selection-bias/ </a></li>
+                <li><a href="https://catalogofbias.org/biases/confirmation-bias/#:~:text=Confirmation%20bias%20occurs%20when%20an,certain%20ideas%20to%20be%20true. ">https://catalogofbias.org/biases/confirmation-bias/#:~:text=Confirmation%20bias%20occurs%20when%20an,certain%20ideas%20to%20be%20true. </a></li>
+                <li><a href="https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Australia ">https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Australia </a></li>
+                <li><a href="https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_United_Kingdom ">https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_United_Kingdom </a></li>
+                <li><a href="https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Alberta ">https://en.wikipedia.org/wiki/COVID-19_pandemic_in_Alberta </a></li>
+                <li><a href="https://en.wikipedia.org/wiki/COVID-19_pandemic_in_India">https://en.wikipedia.org/wiki/COVID-19_pandemic_in_India</a></li>
+                <li><a href="https://www.verywellmind.com/what-is-a-cognitive-bias-2794963  ">https://www.verywellmind.com/what-is-a-cognitive-bias-2794963  </a></li>
+                <li><a href="https://www.alberta.ca/stats/covid-19-alberta-statistics.htm#data-export ">https://www.alberta.ca/stats/covid-19-alberta-statistics.htm#data-export </a></li>
+            </ul>
+        </div>
+
+    </body>
+    <script>
+        //Created by Joshua Ounalom. A member of Group 7.
+        // Other Group Members:
+        // - All other group members are hidden to protect their privacy. Please respect that. Use the final report to get their names.
+        //
+        // Februrary 18th 2022 2:18:37 AM
+        //
+        //heve fun!
+
+
+        const currentPosDiv = document.querySelector("#ScrollBar #CurrentPos");
+        const canvasElement = document.querySelector("#Visuals");
+        const hintDiv = document.querySelector("#ScrollBar #CurrentPos #Hint");
+        const mainWindow = document.querySelector("#MainWindow");
+        const statusDiv = document.querySelector("#Status");
+        const introElement = document.querySelector("#Intro");
+        const startButton = document.querySelector("#Intro #Start");
+        const graphElement = document.querySelector("canvas");
+    
+        const canvas2DContext = canvasElement.getContext("2d");
+        const graph2DContext = graphElement.getContext("2d");
+
+        const canadaImage = document.querySelector("#Canada");
+        const albertImage = document.querySelector("#Alberta");
+        const australiaImage = document.querySelector("#Australia");
+        const indiaImage = document.querySelector("#India");
+        const ukImage = document.querySelector("#UnitedKingdom");
+        
+        const fakeCanvas = document.createElement("canvas");
+        const fakeCanvas2 = document.createElement("canvas");
+
+        function start(dataset){
+
+            const vaccinationData = dataset[0].Data;
+            const casesData = dataset[1].Data;
+            const populationData = dataset[2].Data;
+            const lockdownDate = dataset[3].Data;
+
+
+            const landmarkLocations = {
+                Canada: [
+                    [6.4, 44.1], //Vancouver
+                    [5.6, 45.6], //Victoria
+                    [9.3, 45.7], //Calgary
+                    [9.8, 42.6], //Edmonton
+                    [14.3, 31.6], //Yellowknife
+                    [11.8, 46.5], //Regina
+                    [12.6, 44], //Saskatoon
+                    [18.9, 52.1], //Winnipeg
+                    [23.9, 53.8], //Thunder Bay
+                    [29.3, 60], //Toronto
+                    [30.9, 54.8], //Ottawa
+                    [32.8, 54.4], //Montreal
+                    [33, 53.1], //Quebec City
+                    [37.3, 54.5], //Halifax
+                    [41.7, 44.7], //St. John's
+                    [8.3, 26.7], //Whitehorse
+                    [29.9, 31.1], //Iqaluit
+                ],
+                Alberta: [
+                    [11.1, 79.7], //Edmonton
+                    [11.5, 82.6],
+                    [11.3, 85.7],
+                    [8.9, 85.5],
+                    [12.9, 69.2],
+                    [11.8, 90.1],
+                    [14.3, 87.9],
+                    [6.5, 76.7]
+                ],
+                UnitedKingdom: [
+                    [62.9, 63.6],
+                    [67.3, 64.4],
+                    [65.2, 66.6],
+                    [61.3, 68.6],
+                    [64.1, 60.1],
+                    [63.2, 56.1],
+                    [65.1, 55.6],
+                    [65.4, 59],
+                    [65.9, 61],
+                    [61.3, 44],
+                    [63.6, 40.3]
+                ],
+                India: [
+                    [77.7, 53.3],
+                    [78.8, 50.9],
+                    [78.8, 47.2],
+                    [80.5, 48.6],
+                    [80.8, 46.8],
+                    [78.9, 42.3],
+                    [76.8, 41.2],
+                    [75.3, 40],
+                    [76.5, 46.2],
+                    [78.8, 25.1],
+                    [80.7, 31.7],
+                    [82.9, 39],
+                    [73, 31.2],
+                    [90.9, 27.8]
+                ],
+                Australia: [
+                    [90.2, 88.3],
+                    [93.4, 71.2],
+                    [94.3, 75],
+                    [93.3, 80.8],
+                    [92.6, 85.4],
+                    [86, 83.4],
+                    [72, 79.8],
+                    [72, 82.1],
+                    [80.7, 59.6],
+                    [80.8, 58.1],
+                    [89.9, 62.3]
+                ],
+            };
+
+            const regions = [
+                {
+                    RegionName: "Canada",
+                    Image: canadaImage,
+                    Landmarks: landmarkLocations.Canada,
+                    XPosition: 0.04,
+                    YPosition: 0.05,
+                    Width: 0.38,
+                    SignPosition: [0.3, 0.05],
+                    Color: [127, 0, 0],
+                },
+                {
+                    RegionName: "Alberta",
+                    Image: albertImage,
+                    Landmarks: landmarkLocations.Alberta,
+                    XPosition: 0.05,
+                    YPosition: 0.6,
+                    Width: 0.1,
+                    SignPosition: [0.175, 0.7],
+                    Color: [150, 150, 150],
+                },
+                {
+                    RegionName: "Australia",
+                    Image: australiaImage,
+                    Landmarks: landmarkLocations.Australia,
+                    XPosition: 0.7,
+                    YPosition: 0.55,
+                    Width: 0.25,
+                    SignPosition: [0.825, 0.875, 1],
+                    Color: [60, 196, 97],
+                },
+                {
+                    RegionName: "India",
+                    Image: indiaImage,
+                    Landmarks: landmarkLocations.India,
+                    XPosition: 0.7,
+                    YPosition: 0.05,
+                    Width: 0.25,
+                    SignPosition: [0.825, 0.05],
+                    Color: [227, 155, 64],
+                },
+                {
+                    RegionName: "United Kingdom",
+                    Image: ukImage,
+                    Landmarks: landmarkLocations.UnitedKingdom,
+                    XPosition: 0.55,
+                    YPosition: 0.3,
+                    Width: 0.15,
+                    SignPosition: [0.57, 0.6, 1],
+                    Color: [0, 100, 255],
+                },
+            ]
+
+            let scrollBarSize = 1;
+            let currentScrollBarPosition = 0;
+            
+            let parsedCountryData = {
+                Canada: {},
+                Australia: {},
+                India: {},
+                "United Kingdom": {},
+                Alberta: {}
+            };
+            let maximumSize = 0;
+            let initialDate = Date.now();
+            let currentDate = 0;
+            let finalDate = 0;
+
+            let mousePos = [0, 0];
+
+            let maximumPlot = 0;
+            //Canvas Render Mains
+
+            function makeColorBrighter(color){
+                return [Math.min(color[0]*2, 255), Math.min(color[1]*2, 255), Math.min(color[2]*2, 255)];
+            }
+
+            let events = {
+            };
+            let eventHightlights = [];
+
+
+            function redrawGraph(newMousePos){
+
+                if (newMousePos){
+                    mousePos = newMousePos;
+                }
+
+                let w = graphElement.width;
+                let h = graphElement.height;
+
+                let windowWidth = w - 100;
+                let windowHeight = h - 25;
+
+                let xOrigin = 15;
+
+
+
+                graph2DContext.clearRect(0, 0, w, h);
+
+
+
+                let colorStack = {};
+                let colorStackIndex = 0;
+
+                for (let i in eventHightlights){
+                    let v = eventHightlights[i];
+                    let startPos = (v[0]-initialDate)/(finalDate-initialDate) *windowWidth;
+                    let endPos = (v[1]-initialDate)/(finalDate-initialDate) *windowWidth;
+                    let color = v[2];
+
+                    let delta = endPos - startPos;
+
+                    colorStack[color] = colorStack[color] || (1-colorStackIndex++/5);
+
+                    graph2DContext.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, .25)`;
+
+                    graph2DContext.fillRect(startPos + xOrigin, windowHeight*(1-colorStack[color] ), delta, windowHeight*colorStack[color] );
+
+                }
+
+                graph2DContext.lineWidth = 1;
+
+                for (let i in regions){
+                    let v = regions[i];
+                    let color = v.Color;
+                    let regionName = v.RegionName;
+
+                    let previousPoint = 0;
+
+                    for (let i = 0;i<=maximumSize;i++){
+                        let dateSpecifiedData = getDataPointAtSpecificDate(initialDate + i*1000*60*60*24)[regionName];
+                        let dateSpecifiedCase = dateSpecifiedData.new_cases_per_million;
+
+                        graph2DContext.fillStyle = `rgb(${color[0]},${color[1]},${color[2]})`;
+                        graph2DContext.strokeStyle = `rgb(${color[0]},${color[1]},${color[2]})`;
+
+                        if (previousPoint){
+                            graph2DContext.beginPath();
+                            graph2DContext.moveTo(xOrigin+(i-1)/maximumSize*windowWidth, previousPoint);
+                            graph2DContext.lineTo(xOrigin+i/maximumSize*windowWidth, (1-dateSpecifiedCase/maximumPlot)*windowHeight);
+                            graph2DContext.stroke();
+                        }
+                        previousPoint = (1-dateSpecifiedCase/maximumPlot)*windowHeight;
+                        /*graph2DContext.beginPath();
+                        graph2DContext.arc(xOrigin+(i-1)/maximumSize*windowWidth, (1-dateSpecifiedCase/maximumPlot)*windowHeight, 1, 0, 2*Math.PI);
+                        
+                        graph2DContext.fill();*/
+                    }
+                }
+
+                graph2DContext.fillStyle = "rgb(0, 170, 255)";
+                graph2DContext.font = "13px 'Source Sans Pro', sans-serif";
+
+                let text = "New Cases per million";
+                let textWidth = graph2DContext.measureText(text).width;
+                graph2DContext.fillText(text, xOrigin + windowWidth/2 - textWidth/2, 10);
+
+                graph2DContext.fillStyle = "rgb(0, 170, 255)";
+                graph2DContext.font = "13px 'Source Sans Pro', sans-serif";
+
+                let xTicks = Math.floor(windowWidth/75);
+                let yTicks = Math.floor(windowHeight/12);
+
+                for (let x = 0;x<=xTicks;x++){
+
+                    let additionalDate = initialDate + (finalDate-initialDate) * x/xTicks;
+
+                    let text = new Date(additionalDate).toDateString().match(/\w* \d\d \d*/);
+                    let textWidth = graph2DContext.measureText(text).width;
+
+                    graph2DContext.strokeStyle = "rgb(0, 170, 255)";
+
+                    graph2DContext.lineWidth = 2;
+                    graph2DContext.beginPath();
+                    graph2DContext.moveTo(xOrigin + x/xTicks * windowWidth, windowHeight-3);
+                    graph2DContext.lineTo(xOrigin + x/xTicks * windowWidth, windowHeight+3);
+                    graph2DContext.stroke();
+
+                    graph2DContext.fillText(text, xOrigin + x/xTicks * windowWidth, windowHeight+11);
+                }
+                for (let y= 0;y<=yTicks;y++){
+
+                    let text = Math.floor(maximumPlot * (1-y/yTicks));
+                    let textWidth = graph2DContext.measureText(text).width;
+
+                    graph2DContext.fillText(text, xOrigin + windowWidth, y*12);
+                }
+
+                let scrollPositionPer = currentScrollBarPosition/(scrollBarSize-1);
+
+
+                graph2DContext.font = "13px 'Source Sans Pro', sans-serif";
+
+                graph2DContext.strokeStyle = "rgb(0, 170, 255)";
+                graph2DContext.lineWidth = 2;
+                graph2DContext.beginPath();
+                graph2DContext.moveTo(scrollPositionPer*windowWidth + xOrigin, 0);
+                graph2DContext.lineTo(scrollPositionPer*windowWidth + xOrigin, windowHeight);
+                graph2DContext.stroke();
+
+                for (let i in events){
+                    let v = events[i];
+
+                    graph2DContext.strokeStyle = `rgb(${v[1][0]}, ${v[1][1]}, ${v[1][2]})`;
+                    graph2DContext.fillStyle = `rgb(${v[1][0]}, ${v[1][1]}, ${v[1][2]})`;
+                    graph2DContext.lineWidth = 2;
+
+                    let position = (i-initialDate)/(finalDate-initialDate);
+
+                    for (let r = 0;r<5;r++){
+                        graph2DContext.beginPath();
+                        graph2DContext.moveTo(position*windowWidth + xOrigin, windowHeight/5*r);
+                        graph2DContext.lineTo(position*windowWidth + xOrigin, windowHeight/5*(r+1)-5);
+                        graph2DContext.stroke();
+                    }
+
+                }
+                for (let i in events){
+                    let v = events[i];
+
+                    graph2DContext.strokeStyle = `rgb(${v[1][0]}, ${v[1][1]}, ${v[1][2]})`;
+                    graph2DContext.fillStyle = `rgb(${v[1][0]}, ${v[1][1]}, ${v[1][2]})`;
+                    graph2DContext.lineWidth = 2;
+
+                    let position = (i-initialDate)/(finalDate-initialDate);
+
+                    if (Math.abs(position*windowWidth + xOrigin - mousePos[0]) < 10 || 
+                    Math.abs(position*windowWidth - scrollPositionPer*windowWidth) < 10){
+
+
+                        let textWidth = graph2DContext.measureText(v[0]).width;
+
+                        graph2DContext.fillRect(position*windowWidth + xOrigin, 0, textWidth+10, 15);
+
+                        graph2DContext.fillStyle = `rgb(255, 255, 255)`;
+                        graph2DContext.strokeStyle = `rgb(10, 10, 29)`;
+
+                        graph2DContext.strokeText(v[0], position*windowWidth + xOrigin + 5, 12);
+                        graph2DContext.fillText(v[0], position*windowWidth + xOrigin + 5, 12);
+                    }
+
+                }
+
+            }
+
+            function redraw(){
+                let w = canvasElement.width;
+                let h = canvasElement.height;
+
+                canvas2DContext.clearRect(0, 0, w, h);
+
+                function drawImageOnCanvas(canvasContext, image, width){
+                    width = width*w;
+                    let height = image.height/image.width*width;
+
+                    canvasContext.clearRect(0, 0, width, height);
+                    canvasContext.drawImage(image, 0, 0, width, height);
+                }
+
+                function drawAdvancedImages(image, color, xPosition, yPosition, width, height){
+
+                    xPosition = xPosition || 0;
+                    yPosition = yPosition || 0;
+                    width = width || image.width;
+
+                    xPosition = xPosition*w;
+                    yPosition = yPosition*h;
+                    width = width*w;
+
+                    height = height || image.height/image.width*width;
+                    
+                    fakeCanvas.width = width;
+                    fakeCanvas.height = height;
+                    
+                    let fake2DContext = fakeCanvas.getContext("2d");
+
+                    drawImageOnCanvas(fake2DContext, image, width/w);
+
+                    fake2DContext.globalCompositeOperation = "source-in";
+
+                    fake2DContext.fillStyle = color;
+                    fake2DContext.fillRect(0, 0, width, height);
+
+                    canvas2DContext.drawImage(fakeCanvas, xPosition, yPosition);
+                    fake2DContext.globalCompositeOperation = "source-over";
+                }
+
+                for (let i in regions){
+                    let v = regions[i];
+                    let image = v.Image;
+                    let xPosition = v.XPosition;
+                    let yPosition = v.YPosition;
+                    let width = v.Width;
+                    let height = v.height;
+                    
+                    let color = v.Color;
+
+
+                    let backdropSize = 0.0015;
+
+                    let regionData = getDataPointAtSpecificDate(currentDate)[v.RegionName];
+
+                    let populationData = regionData.Population;
+                    let people_vaccinated = regionData.people_vaccinated;
+
+                    let perecentageImmunized = people_vaccinated/populationData;
+
+                    let bC = makeColorBrighter(v.Color);
+
+                    canvas2DContext.shadowBlur = 100*perecentageImmunized;
+                    canvas2DContext.shadowColor = `rgba(${bC[0]}, ${bC[1]}, ${bC[2]}, ${perecentageImmunized*5})`
+
+                    drawAdvancedImages(image, `rgba(${bC[0]}, ${bC[1]}, ${bC[2]}, ${perecentageImmunized*5})`, xPosition-backdropSize/2, yPosition-backdropSize/2, 
+                        width+backdropSize, height+backdropSize);
+                    canvas2DContext.shadowBlur = 0;
+                    drawAdvancedImages(image, `rgb(${color[0]},${color[1]},${color[2]})`, xPosition, yPosition, width);
+
+                }
+                for (let i in regions){
+                    let v = regions[i];
+
+                    let landmarks = v.Landmarks;
+
+                    let totalDistance = 0;
+                    let landmarkRadius = 25;
+
+                    let xPosition = v.XPosition*w;
+                    let yPosition = v.YPosition*h;
+
+                    let listsOfText = [
+                        /*["Infected: 2,201,582,124 people (50%)", [255, 0, 85]],
+                        ["Daily Cases: 84,241 people (25%)", [0, 170, 255]],
+                        ["Immunized: 1,291,291,411 people (35%)", [0, 255, 255]],
+                        ["Under Lockdown!", [255, 127, 0]]*/
+                    ];
+
+                    let regionData = getDataPointAtSpecificDate(currentDate)[v.RegionName];
+                    
+                    let populationData = regionData.Population;
+                    let people_vaccinated = regionData.people_vaccinated;
+                    let newCases = regionData.new_cases_per_million;
+
+                    listsOfText.push([`New Cases: ${newCases != null ? Math.round(newCases*10)/10 : "N/A"} per million`, [255, 0, 85]]);
+                    listsOfText.push([`Pop Vaccinated: ${people_vaccinated != null ? people_vaccinated : "N/A"} people (${Math.round(people_vaccinated/populationData*100)}%)`, [0, 255, 255]]);
+                    listsOfText.push([`Population: ${populationData || "N/A"} people)`, [0, 170, 255]]);
+                    if (regionData.lockdownState)
+                        listsOfText.push(["Region is in Lockdown!", [255, 255, 0]]);
+
+                    let infectionPercentage = newCases/5825*100;
+
+                    {
+                        let image = v.Image;
+                        
+
+                        let fakeContext2D_1 = fakeCanvas.getContext("2d");
+                        let fakeContext2D_2 = fakeCanvas2.getContext("2d");
+
+
+                        let width = v.Width*w;
+
+                        let height = image.height/image.width*width;
+                        
+                        fakeCanvas.width = width;
+                        fakeCanvas.height = height;
+                        fakeCanvas2.width = width;
+                        fakeCanvas2.height = height;
+
+                        drawImageOnCanvas(fakeContext2D_1, image, v.Width);
+
+                        function calculateSeedPredict(seed, index){
+                            let rawPredict = ((seed*385025235124233.238235+238.2352351252+index**2*58306863462341.2938592-index*85934523142.2352352)%38295.184)/38295.184*2-1;
+                            return rawPredict;
+                        }
+
+                        let infectiousRateAmplifier = Math.min(Math.max(infectionPercentage, 25), 50)/50;
+
+                        for (let i in landmarks){
+                            let v = landmarks[i];
+
+                            for (let i = 0;i<Math.min(infectionPercentage, 50);i++){
+
+                                let seedPrediction = calculateSeedPredict(v[0], i*2);
+
+                                let selectedXPosition = seedPrediction;
+
+                                seedPrediction = calculateSeedPredict(v[1], i*2+1);
+                                let selectedYPosition = Math.sqrt(1-selectedXPosition**2)*seedPrediction*landmarkRadius*infectiousRateAmplifier;
+                                selectedXPosition *= landmarkRadius*infectiousRateAmplifier;
+
+                                fakeContext2D_2.beginPath();
+                                fakeContext2D_2.fillStyle = `rgb(${(calculateSeedPredict(v[0], i*2)+1)/2*30+200}, 0, 0)`;
+                                fakeContext2D_2.arc(selectedXPosition+v[0]/100*w-xPosition, selectedYPosition+v[1]/100*h-yPosition, 2 + 3*infectiousRateAmplifier, 0, Math.PI*2);
+                                fakeContext2D_2.fill();
+                            }
+                        }
+
+                        let area = width * height;
+
+                        for (let i = 0;i<Math.max(0,infectionPercentage)*area/10000;i++){
+
+                            let seedPrediction = calculateSeedPredict(v.XPosition, i*2);
+                            let selectedXPosition = (seedPrediction+1)/2*width;
+
+                            seedPrediction = calculateSeedPredict(v.YPosition, i*2+1);
+                            let selectedYPosition = (seedPrediction+1)/2*height;
+
+
+                            fakeContext2D_2.beginPath();
+                            fakeContext2D_2.fillStyle = `rgb(${(calculateSeedPredict(v[0], i*2)+1)/2*30+200}, 0, 0)`;
+                            fakeContext2D_2.arc(selectedXPosition, selectedYPosition, 2 + 3*infectiousRateAmplifier, 0, Math.PI*2);
+                            fakeContext2D_2.fill();
+                        }
+
+                        fakeContext2D_1.globalCompositeOperation = "source-in";
+                        fakeContext2D_1.drawImage(fakeCanvas2, 0, 0);
+                        fakeContext2D_1.globalCompositeOperation = "source-over";
+
+
+                        canvas2DContext.drawImage(fakeCanvas, xPosition, yPosition, width, height);
+
+                    }
+
+                    for (let i in landmarks){
+                        let v = landmarks[i];
+                        canvas2DContext.beginPath();
+
+                        let width = 5;
+
+                        canvas2DContext.fillStyle = "rgb(10, 10, 29)";
+                        canvas2DContext.arc(v[0]/100*w, v[1]/100*h, width, 0, Math.PI*2);
+                        canvas2DContext.fill();
+
+                        width -= 2;
+
+                        canvas2DContext.beginPath();
+                        if (regionData.lockdownState){
+                            canvas2DContext.fillStyle = "rgb(255, 255, 0)";
+                        }else
+                            canvas2DContext.fillStyle = "rgb(0, 255, 255)";
+                        canvas2DContext.arc(v[0]/100*w, v[1]/100*h, width, 0, Math.PI*2);
+                        canvas2DContext.fill();
+                    }
+
+                    let signPosition = v.SignPosition;
+                    let color = v.Color;
+
+                    canvas2DContext.fillStyle = `rgb(${v.Color[0]}, ${v.Color[1]}, ${v.Color[2]})`;
+                    canvas2DContext.strokeStyle = "rgb(0, 0, 0)";
+                    canvas2DContext.lineWidth = 5;
+                    canvas2DContext.font = "bold 30px 'Source Sans Pro', sans-serif";
+
+                    if (signPosition[2]){
+                        let textWidth = canvas2DContext.measureText(v.RegionName).width;
+
+                        canvas2DContext.strokeText(v.RegionName, signPosition[0]*w-textWidth, signPosition[1]*h);
+                        canvas2DContext.fillText(v.RegionName, signPosition[0]*w-textWidth, signPosition[1]*h);
+
+                        canvas2DContext.font = "20px 'Source Sans Pro', sans-serif";
+                        listsOfText.forEach((element, index) => {
+                            let textWidth = canvas2DContext.measureText(element[0]).width;
+                            
+                            canvas2DContext.fillStyle = `rgb(${element[1][0]},${element[1][1]},${element[1][2]})`;
+                            canvas2DContext.strokeText(element[0], signPosition[0]*w-textWidth, signPosition[1]*h+30+index*20);
+                            canvas2DContext.fillText(element[0], signPosition[0]*w-textWidth, signPosition[1]*h+30+index*20);
+                        });
+                    }else{
+
+                        let width = canvas2DContext.measureText(v.RegionName);
+
+                        canvas2DContext.strokeText(v.RegionName, signPosition[0]*w, signPosition[1]*h);
+                        canvas2DContext.fillText(v.RegionName, signPosition[0]*w, signPosition[1]*h);
+
+                        canvas2DContext.font = "20px 'Source Sans Pro', sans-serif";
+                        listsOfText.forEach((element, index) => {
+                            canvas2DContext.fillStyle = `rgb(${element[1][0]},${element[1][1]},${element[1][2]})`;
+                            canvas2DContext.strokeText(element[0], signPosition[0]*w, signPosition[1]*h+30+index*20);
+                            canvas2DContext.fillText(element[0], signPosition[0]*w, signPosition[1]*h+30+index*20);
+                        });
+                    }
+
+                    canvas2DContext.fillStyle = "rgb(0, 170, 255)";
+                    canvas2DContext.fillText("Infograpic Developed by Joshua Ounalom (Group 7) Februrary 17th 2021", 0, h-3);
+
+                }
+            }
+
+            function resizeRedraw(){
+                let aspectRatio = 1920/1080;
+                let resolutionFactor = 1.5;
+
+                let innerWidth = window.innerWidth;
+                let innerHeight = window.innerHeight - 150;
+                
+                if (innerWidth/aspectRatio > innerHeight){
+                    canvasElement.width = innerHeight*aspectRatio*resolutionFactor;
+                    canvasElement.height = innerHeight*resolutionFactor;
+                }else{
+                    canvasElement.width = innerWidth*resolutionFactor;
+                    canvasElement.height = innerWidth/aspectRatio*resolutionFactor;
+                }
+
+
+                graphElement.width = innerWidth;
+                graphElement.height = 150;
+
+
+                canvasElement.style.width = `${canvasElement.width/resolutionFactor}px`;
+                canvasElement.style.height = `${canvasElement.height/resolutionFactor}px`;
+ 
+                redraw();
+                redrawGraph();
+            }
+
+
+            function getBarSize(){
+                return Math.max(5, 1/(scrollBarSize)*100);
+            }
+
+            function updateScrollBar(contentSize){
+                scrollBarSize = contentSize;
+                currentPosDiv.style.height = `${getBarSize()}%`;
+            }
+
+
+            function getDataPointAtSpecificDate(date){
+                date = Math.floor(date/1000/60/60/24)*1000*60*60*24;
+                
+                let collectedCountryData = {};
+
+                for (let i in parsedCountryData){
+                    let selectedParsedCountryData = parsedCountryData[i];
+                    let data = selectedParsedCountryData[date];
+
+                    let currentDate = date;
+                    while (data == null && currentDate >= initialDate){
+                        currentDate -= 1000*60*60*24;
+                        data = selectedParsedCountryData[currentDate];
+                    }
+                    collectedCountryData[i] = data || {};
+
+                    let currentYear = new Date(date).getUTCFullYear();
+                    let currentPopulation;
+
+                    for (let r in populationData.Entity){
+                        let countryName = populationData.Entity[r];
+                        let year = populationData.Year[r];
+
+                        if (year == currentYear && countryName == i){
+                            currentPopulation = populationData.Population[r];
+                            break;
+                        }
+                    }
+
+                    collectedCountryData[i].Population = currentPopulation;
+
+                }
+                
+                return collectedCountryData;
+            }
+
+
+            //Parse Vaccination Data
+            for (let i in vaccinationData.date){
+                let date = vaccinationData.date[i];
+                let country = vaccinationData.location[i];
+                let people_vaccinated = vaccinationData.people_vaccinated[i];
+
+                let selectedCountryData = parsedCountryData[country];
+
+                let selectedDateData = selectedCountryData[date] || {};
+                selectedCountryData[date] = selectedDateData;
+
+                selectedDateData.people_vaccinated = people_vaccinated;
+
+
+                finalDate = Math.max(finalDate, date);
+                initialDate = Math.min(initialDate, date);
+            }
+            //Parse Cases Data
+            for (let i in casesData.date){
+                let date = casesData.date[i];
+                let country = casesData.location[i];
+                let new_cases_per_million = casesData.new_cases_per_million[i];
+
+                let selectedCountryData = parsedCountryData[country];
+
+                let selectedDateData = selectedCountryData[date] || {};
+                selectedCountryData[date] = selectedDateData;
+
+                selectedDateData.new_cases_per_million = new_cases_per_million;
+
+
+                finalDate = Math.max(finalDate, date);
+                initialDate = Math.min(initialDate, date);
+
+                maximumPlot = Math.max(new_cases_per_million, maximumPlot);
+            }
+
+            //Parse Lockdown Data
+            let previousCountry;
+            let previousLockDownState = false;
+            let startLockDownTime = 0;
+            let endingLockDownTime = 0;
+
+            for (let i in lockdownDate.date){
+                let date = lockdownDate.date[i];
+                let country = lockdownDate.location[i];
+                let lockdownState = lockdownDate.lockdown_in_effect[i];
+
+                let regionColor = regions.find(va=>va.RegionName == country).Color;
+
+                let selectedCountryData = parsedCountryData[country];
+
+                let selectedDateData = selectedCountryData[date] || {};
+                selectedCountryData[date] = selectedDateData;
+
+                selectedDateData.lockdownState = lockdownState;
+
+                if (previousCountry == country && lockdownState != previousLockDownState){
+                    if (lockdownState){
+                        events[date] = [`${country} is in lockdown`, regionColor];
+                        startLockDownTime = date;
+                    }else{
+                        events[date] = [`${country} is no longer locked down!`, regionColor];
+                        endingLockDownTime = date;
+
+                        eventHightlights.push([startLockDownTime, endingLockDownTime, regionColor]);
+                    }
+                }
+
+                previousCountry = country;
+                previousLockDownState = lockdownState;
+
+                finalDate = Math.max(finalDate, date);
+                initialDate = Math.min(initialDate, date);
+            }
+
+            for (let i in parsedCountryData){
+                let v = parsedCountryData[i];
+
+
+                let keys = Object.keys(v).sort();
+
+                let initialData = Number(keys[0]);
+                let finalDate = Number(keys[keys.length-1]);
+
+                let dateIterations = (finalDate-initialData)/1000/60/60/24;
+
+                let savedDataState = {};
+
+                for (let r = 0;r<dateIterations;r++){
+                    let selectedDate = initialData + r * 1000*60*60*24;
+
+                    let dateSpecificData = v[String(selectedDate)];
+
+                    for (let t in dateSpecificData){
+                        if (dateSpecificData[t])
+                            savedDataState[t] = dateSpecificData[t];
+                    }
+
+                    for (let t in savedDataState){
+                        if (dateSpecificData[t] == null)
+                            dateSpecificData[t] = savedDataState[t];
+                    }
+                }
+
+            }
+
+            maximumSize = Math.floor(finalDate-initialDate)/1000/60/60/24;
+
+            {
+                let activelyRendering = false;
+
+                graphElement.addEventListener("mousemove", event=>{
+                    if (activelyRendering == false){
+                        activelyRendering = true;
+                        setTimeout(() => {
+                            activelyRendering = false;
+                            redrawGraph([event.clientX, event.clientY]);
+                        }, 25);
+                    }
+                });
+            }
+            {
+                let activelyRendering = false;
+                let needToUpdate = false;
+                
+                let minimizeHintTimeout;
+
+                let scrollWheelSelect = false;
+                let hingePosition = 0;
+                let hingeScrollBarPosition = currentScrollBarPosition;
+                let lastTouchTick = Date.now();
+                let inertiaScrollingSpeed = 0;
+                let inertiaScrollingInterval;
+
+                function redrawDueToScroll(){
+
+                    let barSize = getBarSize();
+
+                    currentPosDiv.style.top = `${(100-barSize)*(currentScrollBarPosition/(scrollBarSize-1))}%`;
+
+                    let index = Math.round(maximumSize * currentScrollBarPosition/(scrollBarSize-1));
+
+                    currentDate = initialDate + 1000*60*60*24*index
+                    let selectedDate = new Date(currentDate);
+
+                    hintDiv.innerText = selectedDate.toDateString();
+                    hintDiv.style.left = "-135px";
+                    statusDiv.innerText = "On " + selectedDate.toDateString() + "...";
+
+                    needToUpdate = true;
+
+                    if (activelyRendering == false){
+
+                        clearTimeout(minimizeHintTimeout);
+                        minimizeHintTimeout = setTimeout(()=>{
+                            hintDiv.style.left = "0px";
+                        }, 2000);
+
+                        activelyRendering = true;
+                        let interval;
+                        let intervalSinceFullRedraw = 0;
+                        interval = setInterval(()=>{
+                            if (needToUpdate == false){
+                                clearInterval(interval);
+                                activelyRendering = false;
+                            }
+                            needToUpdate = false;
+                            if (Date.now()-intervalSinceFullRedraw > 15){
+                                intervalSinceFullRedraw = Date.now();
+                                redraw();
+                            }
+                            redrawGraph();
+                        }, 15);
+                    }
+                }
+
+
+                currentPosDiv.addEventListener("mousedown", event=>{
+                    if (event.button == 0){
+                        hingePosition = event.clientY;
+                        scrollWheelSelect = true;
+                        hingeScrollBarPosition = currentScrollBarPosition;
+                    }
+                });
+                window.addEventListener("mousemove", event=>{
+                    if (scrollWheelSelect){
+                        let delta = event.clientY - hingePosition;
+                        let scrollBarHeight = window.innerHeight - 150;
+
+                        let relativeChange = delta/scrollBarHeight*maximumSize;
+
+                        currentScrollBarPosition = Math.min(scrollBarSize-1,Math.max(hingeScrollBarPosition + relativeChange, 0));
+
+                        redrawDueToScroll();
+                    };
+                });
+
+                window.addEventListener("mouseup", event=>{
+                    if (event.button == 0)
+                        scrollWheelSelect = false;
+                });
+
+                function grabAverageTouchPos(touches){
+                    let x = 0;
+                    let y = 0;
+                    for (let i = 0;i<touches.length;i++){
+                        let v = touches[i];
+                        x += v.clientX;
+                        y += v.clientY;
+                    }
+                    x /= touches.length;
+                    y /= touches.length;
+                    
+                    return [x, y];
+                }
+
+                window.addEventListener("touchstart", event=>{
+                    let avgTouchPos = grabAverageTouchPos(event.touches)[1];
+
+                    hingePosition = avgTouchPos;
+                    scrollWheelSelect = true;
+                    hingeScrollBarPosition = currentScrollBarPosition;
+                });
+                window.addEventListener("touchmove", event=>{
+                    if (scrollWheelSelect){
+                        let avgTouchPos = grabAverageTouchPos(event.touches)[1];
+
+                        let delta = avgTouchPos - hingePosition;
+                        let scrollBarHeight = window.innerHeight - 150;
+
+                        let relativeChange = delta/window.innerHeight*maximumSize;
+
+                        let newPosition = Math.min(scrollBarSize-1,Math.max(hingeScrollBarPosition + relativeChange, 0));
+
+                        inertiaScrollingSpeed = (newPosition-currentScrollBarPosition)/(Date.now()-lastTouchTick) * 10;
+                        currentScrollBarPosition = newPosition
+
+                        lastTouchTick = Date.now();
+
+                        redrawDueToScroll();
+                    };
+                });
+                window.addEventListener("touchend", event=>{
+                    scrollWheelSelect = false;
+
+                    inertiaScrollingInterval = setInterval(() => {
+                        if (scrollWheelSelect || inertiaScrollingSpeed == 0){
+                            clearInterval(inertiaScrollingInterval);
+                        }
+                        inertiaScrollingSpeed = inertiaScrollingSpeed + Math.max(Math.min(0-inertiaScrollingSpeed, .25), -.25);
+
+                        currentScrollBarPosition = Math.min(scrollBarSize-1,Math.max(currentScrollBarPosition + inertiaScrollingSpeed, 0))
+
+                        redrawDueToScroll();
+                    }, 15);
+                });
+
+                window.addEventListener("wheel", (scrollEvent)=>{
+
+                    let deltaY = scrollEvent.deltaY;
+
+                    currentScrollBarPosition = Math.min(Math.max(currentScrollBarPosition + deltaY/5, 0), scrollBarSize-1);
+
+                    redrawDueToScroll();
+                })
+            }
+            
+            window.addEventListener("resize", resizeRedraw);
+
+            setTimeout(() => {
+                resizeRedraw();
+            }, 100);
+
+                
+            updateScrollBar(maximumSize);
+
+        }
+
+
+        let requiredData = [
+            {
+                ResourceName: "Vaccine Data",
+                Link: "get_vaccine_data",
+                Data: [],
+            },
+            {
+                ResourceName: "Cases Data",
+                Link: "get_cases_data",
+                Data: [],
+            },
+            {
+                ResourceName: "Population",
+                Link: "get_population_data",
+                Data: [],
+            },
+            {
+                ResourceName: "Lockdown Data",
+                Link: "get_lockdown_data",
+                Data: [],
+            }
+        ]
+
+
+        let queued = 0;
+
+        function finishRequest(requiredDataElement, data){
+            requiredDataElement.Data = data;
+            queued --;
+            if (queued == 0){
+                start(requiredData);
+            }
+        }
+
+        requiredData.forEach(va=>{
+            queued ++ ;
+            let xhmlhttprequest = new XMLHttpRequest();
+
+            xhmlhttprequest.open("GET", `/${va.Link}`);
+
+            xhmlhttprequest.addEventListener("readystatechange", (event)=>{
+                if (xhmlhttprequest.readyState == 4 && xhmlhttprequest.status == 200){
+                    finishRequest(va, JSON.parse(xhmlhttprequest.responseText));
+                };
+            });
+
+            xhmlhttprequest.send();
+        });
+
+        startButton.addEventListener("click", ()=>{
+            introElement.style.top = "150%";
+            mainWindow.style.filter = "blur(0px)";
+        });
+    </script>
+</html>
